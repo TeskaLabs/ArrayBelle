@@ -45,7 +45,7 @@ class ConfigFactory():
 		config = ConfigParser.ConfigParser()
 		config.SECTCRE = re.compile(r"\[ *(?P<header>[^]]+?) *\]")
 
-		# os.environ['CONFIG'] = "../test-content.cfg"
+		os.environ['CONFIG'] = "../site-teskalabs.com-blog/config.cfg"
 
 		# Reading the site-specific configuration
 		if "CONFIG" in os.environ:
