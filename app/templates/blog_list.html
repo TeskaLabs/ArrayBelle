@@ -1,0 +1,100 @@
+{% extends "@base.html" %}
+
+{% block content %}
+<div class="page-header">
+	<h2 class="tcenter">
+		<b>Header</b>
+		<a title="RSS Feed" href="{{ url_for('rss.atom_feed') }}"><img src="{{ url_for('static', filename='images/rss_alt_16x16.png') }}"></a>
+	</h2>
+</div>
+
+{% for blog, d in blogs %}
+
+{% if loop.first and tag_filter is none %}
+	<div class="row blog-most-recent">
+		{% if d.get('image') %}
+		<div class="col-sm-4">
+			<div class="img-wrapper">
+				<img src="{{ d['image'] }}">
+			</div>
+		</div>
+		{% endif %}
+		<div class="{% if d.get('image') %}col-sm-8{% else %}col-sm-12{% endif %}">
+			<h3 class="list-group-item-heading" >
+				<a href="{{ url_for('blog_entry.entry', entry=blog) }}" class="t-black">
+					{{d['name']}}
+				</a>
+			</h3>
+			{% if d.get('lead_para') %}
+			<p>
+				{{d['lead_para']}}
+			</p>
+			{% endif %}
+			<p>
+				<a href="{{ url_for('blog_entry.entry', entry=blog) }}"><b>Continue reading ...</b></a>
+			</p>
+			<p>
+				<span class="glyphicon glyphicon-tag"></span>
+				{% for tag in d['tags'] %}
+					<!--a href="{{ url_for('blog_list.index') }}?t={{tag}}" class="label label-default"><span class="glyphicon glyphicon-tag"></span> {{tag}}</a-->
+				<a href="{{ url_for('blog_list.index', tag=tag) }}" class="label label-default">
+					 {{tag}}</a>
+				{% endfor %}
+				<br />
+			</p>
+			<p><small>Published on {{d['published_at'].strftime('%B %d, %Y')}}</small></p>
+		</div>
+	</div>
+	<div class="row padding-tb-2">
+		<div class="col-sm-4"><hr/></div>
+		<div class="col-sm-4 text-center"><h4>Latest Posts</h4></div>
+		<div class="col-sm-4"><hr/></div>
+
+	</div>
+{% else %}
+	{% set loop_index = loop.index0 + (0 if tag_filter is none else 1) %}
+	{% if (loop_index + 2) is divisibleby 3 %}
+	<div class="row padding-b-2">
+	{% endif %}
+		<div class="col-sm-4 blog-list-item">
+			{% if (not tag_filter and d.get('image')) or (tag_filter and 'press' not in tag_filter and 'bulletin' not in tag_filter) %}
+				<div class="img-wrapper">
+					<img src="{{ d['image'] }}">
+				</div>
+			{% endif %}
+			<h3 class="list-group-item-heading" >
+				<a href="{{ url_for('blog_entry.entry', entry=blog) }}" class="t-black">
+					{{d['name']}}
+				</a>
+			</h3>
+			{% if d.get('lead_para') %}
+			<p>
+				{{ d['lead_para'] }}
+			</p>
+			{% endif %}
+			<p>
+				<a href="{{ url_for('blog_entry.entry', entry=blog) }}"><b>Continue reading ...</b></a>
+			</p>
+			<p>
+				<span class="glyphicon glyphicon-tag"></span>
+				{% for tag in d['tags'] %}
+					<!--a href="{{ url_for('blog_list.index') }}?t={{tag}}" class="label label-default"><span class="glyphicon glyphicon-tag"></span> {{tag}}</a-->
+				<a href="{{ url_for('blog_list.index', tag=tag) }}" class="label label-default">
+					 {{tag}}</a>
+				{% endfor %}
+				<br />
+			</p>
+			<p><small>Published on {{d['published_at'].strftime('%B %d, %Y')}}</small></p>
+		</div>
+	{% if loop.last or loop_index is divisibleby 3 %}
+	</div> <!-- /end - row -->
+	{% endif %}
+
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

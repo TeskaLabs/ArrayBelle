@@ -1,0 +1,16 @@
+{% if tags|length > 0 %}
+<div class="blog-entry-tags">
+	Tags:
+	{% for tag in tags %}
+	<a href="{{ url_for('blog_list.index', tag=tag) }}" class="">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+	{% endfor %}
+</div>
+{% endif %}
+<div class="row">
+
+	{# RSS #}
+	<div class="col-md-1 b-padding">
+		<a title="RSS Feed" href="{{ url_for('rss.atom_feed') }}"><img src="{{ url_for('static', filename='images/rss_alt_16x16.png') }}"></a>
+	</div>
+
+</div>

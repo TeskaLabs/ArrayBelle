@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" {% block html %}{% endblock html %}>
+<head>
+	{% include '_header.html' %}
+</head>
+
+<body>
+	{% include '_navigation.html' %}
+
+	<div class="container padding-t-3">	
+		{% for category, msg in get_flashed_messages(with_categories=true) %}
+			<div class="alert alert-{{ category }}">{{ msg }}</div>
+		{% endfor %}
+		<div id="content">{% block content %}{% endblock %}</div>
+	</div>
+
+	{% include '_footer.html' %}
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery/jquery-1.11.1.min.js') }}">\x3C/script>')</script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/plugins/bootstrap-hover-dropdown.min.js') }}"></script>
+<script src="{{ url_for('static', filename='fancyBox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+<script src="https://cdn.optimizely.com/js/2426290151.js"></script>
+
+{% block script %}{% endblock %}
+
+{% include '_analytics.html' %}
+</html>

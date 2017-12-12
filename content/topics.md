@@ -1,0 +1,2 @@
+# Ideas
+- Default topic
