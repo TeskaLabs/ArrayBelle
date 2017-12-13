@@ -6,7 +6,7 @@ class ConfigFactory():
 	defaults = {
 		'general': {
 			'debug': False,
-			'website_url': 'http://www.teskalabs.com/',
+			'website_url': '/',
 		},
 		'content': {
 			'templates_directory': _basedir + '/app/templates',
