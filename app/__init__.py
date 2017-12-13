@@ -1,7 +1,7 @@
 import os
 import jinja2
 from flask import Flask, render_template, current_app
-from config import ConfigFactory
+from .config import ConfigFactory
 
 ###
 

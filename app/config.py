@@ -1,6 +1,6 @@
 import os, re, ConfigParser
 
-_basedir = os.path.abspath(os.path.dirname(__file__))
+_basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 class ConfigFactory():
 	defaults = {
@@ -48,13 +48,31 @@ class ConfigFactory():
 		# os.environ['CONFIG'] = "../site-teskalabs.com-blog/config.cfg"
 
 		# Reading the site-specific configuration
-		if "CONFIG" in os.environ:
-			config_fname = os.environ['CONFIG']
+		if "ARRAYBELLE_CONF" in os.environ:
+			config_fname = os.environ['ARRAYBELLE_CONF']
 			if not os.path.isfile(config_fname):
 				print("Info: config file '{}' not found. Using the default configuration.".format(config_fname))
 			else:
 				config.read(config_fname)
 
 		self.add_defaults(self.defaults, config)
+		self.to_absolute_paths(config)
 
 		return config
+
+
+	def to_absolute_paths(self, config):
+		""" Converts relative paths in config to absolute paths
+
+			:param config: configparser object
+		"""
+		content_paths = [
+			"templates_directory",
+			"media_directory",
+			"authors_directory",
+			"content_directory"
+		]
+		for key in content_paths:
+			path = config.get('content', key)
+			if not os.path.isabs(path):
+				config.set('content', key, os.path.join(_basedir, path))
