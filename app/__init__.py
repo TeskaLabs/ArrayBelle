@@ -19,12 +19,14 @@ my_loader = jinja2.ChoiceLoader([
 app.jinja_loader = my_loader
 
 ###
-
 from . import blog_entry
 app.register_blueprint(blog_entry.bp)
 
 from . import blog_list
 app.register_blueprint(blog_list.bp)
+
+from . import blog_site_media
+blog_site_media.init(app)
 
 from . import rss
 app.register_blueprint(rss.bp)

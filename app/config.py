@@ -12,9 +12,12 @@ class ConfigFactory():
 		},
 		'content': {
 			'templates_directory': _basedir + '/app/templates',
-			'media_directory': _basedir + '/app/static/images',
+			'site_media_directory': _basedir + '/app/static', # Recommended for development purposes only
 			'authors_directory': _basedir + '/authors',
 			'content_directory': _basedir + '/content'
+		},
+		'url': {
+			'site_media':'/site'
 		}
 	}
 
@@ -70,7 +73,7 @@ class ConfigFactory():
 		"""
 		content_paths = [
 			"templates_directory",
-			"media_directory",
+			"site_media_directory",
 			"authors_directory",
 			"content_directory"
 		]
