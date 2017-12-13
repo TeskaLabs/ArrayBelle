@@ -1,0 +1,32 @@
+<h2>You Might Be Interested in Reading These Articles</h2>
+{% for blog, d in related_posts %}
+  <div class="col-sm-4 blog-list-item">
+    {% if d.get('image') %}
+    <div class="img-wrapper">
+      <img src="{{ d['image'] }}">
+    </div>
+    {% endif %}
+    <h3 class="list-group-item-heading" >
+      <a href="{{ url_for('blog_entry.entry', entry=blog) }}" class="t-black">
+        {{d['name']}}
+      </a>
+    </h3>
+    {% if d.get('lead_para') %}
+    <p>
+      {{ d['lead_para'] }}
+    </p>
+    {% endif %}
+    <p>
+      <a href="{{ url_for('blog_entry.entry', entry=blog) }}"><b>Continue reading ...</b></a>
+    </p>
+    <p>
+      <span class="glyphicon glyphicon-tag"></span>
+      {% for tag in d['tags'] %}
+      <a href="{{ url_for('blog_list.index', tag=tag) }}" class="label label-default">
+         {{tag}}</a>
+      {% endfor %}
+      <br />
+    </p>
+    <p><small>Published on {{d['published_at'].strftime('%B %d, %Y')}}</small></p>
+  </div>
+{% endfor %}

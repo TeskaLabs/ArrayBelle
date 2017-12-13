@@ -1,0 +1,18 @@
+<div id="author-card" class="author-card">
+  <div class="author-card-about">
+    <p>About the Author</p>
+  </div>
+  {% if author_obj.get('image') != None %}
+    <div class="author-card-image">
+      <img src="{{ author_obj.get('image') }}" style="width: 100%; max-width: 100px;" class="img-circle">
+    </div>
+  {% endif %}
+  <h4 class="author-card-name">
+    <a href="{{ url_for('blog_list.index') }}/author/{{ author_obj.get('id') }}" class="">
+      {{ author_obj.get('name') }}
+    </a>
+  </h4>
+  <div class="author-card-info">
+    <p>{{ author_obj.get('info') }}</p>
+  </div>
+</div>

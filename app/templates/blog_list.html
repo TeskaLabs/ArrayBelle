@@ -1,12 +1,7 @@
 {% extends "@base.html" %}
 
 {% block content %}
-<div class="page-header">
-	<h2 class="tcenter">
-		<b>Header</b>
-		<a title="RSS Feed" href="{{ url_for('rss.atom_feed') }}"><img src="{{ url_for('static', filename='images/rss_alt_16x16.png') }}"></a>
-	</h2>
-</div>
+{% include 'blog_list_top.html' %}
 
 {% for blog, d in blogs %}
 

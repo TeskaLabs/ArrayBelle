@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	/* Wrap the first heading */
+	$("div#content h1:first").wrap('<div class="page-header" />');
+
+	/* Move tags to the beginning of the post*/
+	$(".blog-entry-tags").insertAfter(".page-header");
+	$(document.links).filter(function() {
+		return this.hostname != window.location.hostname;
+	}).attr('target', '_blank');
+
+	/* Move Author Card to the beginning of the post*/
+	var $origAuthorCard = $('#author-card');
+	var $cloneAuthorCard = $('#author-card').clone();
+	$origAuthorCard.addClass('visible-xs').addClass('margin-tb-2');
+	$cloneAuthorCard.insertAfter(".page-header").addClass('post-top').addClass('hidden-xs');
+});
+
+</script>

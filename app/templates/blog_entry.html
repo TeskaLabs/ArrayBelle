@@ -1,134 +1,33 @@
 {% extends "@base.html" %}
-
 {% block html %}itemscope itemtype="http://schema.org/Article"{% endblock html %}
-{% block title %}{% if title %}{{title}}{% endif %}{% endblock %}
-
-{% block description %}{% if description %}{{description}}{% endif %}{% endblock %}
-
-{% block keywords %}{{ keywords }}{% endblock %}
-
 {% block header %}
-<meta property="og:type" content="article" />
-
-{% if meta_dict.get('twitter_card_image') %}
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image:src" content="{{meta_dict.get('twitter_card_image')}}" />
-{% endif %}
-
-{% if meta_dict.get('image') %}
-<meta property="og:image" content="{{ meta_dict.get('image') }}" />
-{% endif %}
-
-<meta property="og:url" content="{{ url_for('blog_entry.entry', entry=entry, _external=True) }}" />
-
-<base href="{{ url_for('blog_entry.file', entry=entry, path='', _external=True) }}" />
-
-{#
-Blog entry has width fixed to 940px;
-See http://stackoverflow.com/questions/19241564/bootstrap-3-940px-width-grid
-#}
-<style type="text/css">
-	@media (min-width: 1200px) {
-		.container {
-			max-width: 970px;
-		}
-	}
-
-	#navbar-contact {
-		transition-property: color, border-color, background-color, font-weight;
-		transition-duration: 2400ms;
-	}
-
-	li#navbar-contact.highlight {
-		background-color: #2D3345;
-	}
-
-		li#navbar-contact.highlight a {
-			color: white;
-		}
-
-	.blog-entry-tags {
-		margin-bottom: 20px;
-	}
-</style>
-
+{% include 'blog_entry_header.html' %}
+{% endblock %}
 {% block content %}
 {% autoescape false %}
 <div class="row">
   <div class="col-sm-8">
     {{body}}
-    <div class="text-center">
-      <a href="/contact" class="btn btn-lg btn-orange">Contact us</a>
-    </div>
+    {% include 'blog_entry_content_bottom.html' %}
     {% if author_obj != {} %}
-      <div id="author-card" class="author-card">
-        <div class="author-card-about">
-          <p>About the Author</p>
-        </div>
-        {% if author_obj.get('image') != None %}
-          <div class="author-card-image">
-            <img src="{{ author_obj.get('image') }}" style="width: 100%; max-width: 100px;" class="img-circle">
-          </div>
-        {% endif %}
-        <h4 class="author-card-name">
-          <a href="{{ url_for('blog_list.index') }}/author/{{ author_obj.get('id') }}" class="">
-            {{ author_obj.get('name') }}
-          </a>
-        </h4>
-        <div class="author-card-info">
-          <p>{{ author_obj.get('info') }}</p>
-        </div>
-      </div>
+      {% include 'blog_entry_author_card.html' %}
     {% endif %}
   </div>
   <div class="col-sm-3 col-sm-offset-1 text-center">
 	{% include 'blog_entry_sidebar.html' %}
   </div>
 </div>
-
+{% if related_posts != [] %}
 <div class="row">
   <div class="col-sm-12 padding-tb-1">
-    <h2>You Might Be Interested in Reading These Articles</h2>
+    {% include 'blog_entry_related_posts.html' %}
   </div>
-    {% for blog, d in related_posts %}
-      <div class="col-sm-4 blog-list-item">
-        {% if d.get('image') %}
-        <div class="img-wrapper">
-          <img src="{{ d['image'] }}">
-        </div>
-        {% endif %}
-        <h3 class="list-group-item-heading" >
-          <a href="{{ url_for('blog_entry.entry', entry=blog) }}" class="t-black">
-            {{d['name']}}
-          </a>
-        </h3>
-        {% if d.get('lead_para') %}
-        <p>
-          {{ d['lead_para'] }}
-        </p>
-        {% endif %}
-        <p>
-          <a href="{{ url_for('blog_entry.entry', entry=blog) }}"><b>Continue reading ...</b></a>
-        </p>
-        <p>
-          <span class="glyphicon glyphicon-tag"></span>
-          {% for tag in d['tags'] %}
-          <a href="{{ url_for('blog_list.index', tag=tag) }}" class="label label-default">
-             {{tag}}</a>
-          {% endfor %}
-          <br />
-        </p>
-        <p><small>Published on {{d['published_at'].strftime('%B %d, %Y')}}</small></p>
-      </div>
-    {% endfor %}
 </div>
-
+{% endif %}
 {% endautoescape %}
-
 <hr />
-
-{% endblock %}
-
 {% include 'blog_entry_bottom.html' %}
-
+{% endblock %}
+{% block script %}
+{% include 'blog_entry_script.html' %}
 {% endblock %}

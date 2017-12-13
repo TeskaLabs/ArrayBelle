@@ -7,15 +7,10 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<!-- <a class="btn btn-sm btn-primary btn-cta btn-orange btn-request-demo float-right visible-xs" href="{{ current_app.iconfig.get('general', 'website_url') }}/request-demo">Request Demo</a> -->
 			<a rel="home" class="navbar-brand" href="/"></a>
 		</div>
 		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="{{ current_app.iconfig.get('general', 'website_url') }}" class="dropdown-toggle" target="_blank" data-hover="dropdown">Blog</a>
-				</li>
-			</ul>
+			{% include '_navigation_links.html' %}
 		</div>
 	</div>
 </nav>

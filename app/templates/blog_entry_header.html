@@ -1,0 +1,17 @@
+<meta property="og:type" content="article" />
+{% if meta_dict.get('twitter_card_image') %}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image:src" content="{{meta_dict.get('twitter_card_image')}}" />
+{% endif %}
+{% if meta_dict.get('image') %}
+<meta property="og:image" content="{{ meta_dict.get('image') }}" />
+{% endif %}
+<meta property="og:url" content="{{ url_for('blog_entry.entry', entry=entry, _external=True) }}" />
+<base href="{{ url_for('blog_entry.file', entry=entry, path='', _external=True) }}" />
+<style type="text/css">
+	@media (min-width: 1200px) {
+		.container {
+			max-width: 970px;
+		}
+	}
+</style>
