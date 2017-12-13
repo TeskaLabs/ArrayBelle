@@ -1,8 +1,9 @@
 {
-	"name": "The default post",
+	"name": "The Default Post",
+	"author": "default",
 	"published_at": "12 Dec 2017",
 	"tags": ["mobile", "security"],
-	"title": "The default post", 
+	"title": "The Default Post", 
 	"description": "Lorem ipsum",
-	"lead_para": "Explanation"
+	"lead_para": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin accumsan mauris eu accumsan dignissim."
 }

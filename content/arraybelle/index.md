@@ -1,4 +1,5 @@
-# Lorem Ipsum
+ArrayBelle Blog Engine
+===
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin accumsan mauris eu accumsan dignissim. Nunc ligula elit, aliquet consequat lectus eget, tincidunt luctus libero. Vivamus pretium mi ac libero aliquam, at elementum augue cursus. Donec ultricies nisi et libero lacinia sollicitudin.
 
