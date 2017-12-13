@@ -1,3 +1,2 @@
-{% if current_app.iconfig.get("general", "debug") == "False" or current_app.iconfig.get("general", "debug") == false %}
-
+{% if current_app.iconfig.getboolean("analytics", "enable") == True %}
 {% endif %}

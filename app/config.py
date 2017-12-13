@@ -5,8 +5,10 @@ _basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 class ConfigFactory():
 	defaults = {
 		'general': {
-			'debug': False,
 			'website_url': '/',
+		},
+		'analytics': {
+			'enable': False,
 		},
 		'content': {
 			'templates_directory': _basedir + '/app/templates',
