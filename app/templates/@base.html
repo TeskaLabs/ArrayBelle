@@ -28,5 +28,7 @@
 
 {% block script %}{% endblock %}
 
-{% include '_analytics.html' %}
+{% if current_app.iconfig.getboolean("analytics", "enable") == True %}
+	{% include '_analytics.html' %}
+{% endif %}
 </html>
