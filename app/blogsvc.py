@@ -4,7 +4,6 @@ from random import shuffle as rnd_shuffle
 
 def GetBlogFeed(tag_filter=None, author_filter=None, tag_exclude=None, tag_include=None, entry_exclude=None, limit=None, shuffle=False):
 	blog_dir = current_app.iconfig.get('content', 'content_directory')
-	print(blog_dir)
 
 	now = datetime.datetime.now();
 

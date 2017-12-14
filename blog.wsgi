@@ -9,7 +9,7 @@ def application(env, s_r):
 
 	# Pass configuration path envvar to os.env
 	if "ARRAYBELLE_CONF" in env:
-		os.env["ARRAYBELLE_CONF"] = env["ARRAYBELLE_CONF"]
+		os.environ["ARRAYBELLE_CONF"] = env["ARRAYBELLE_CONF"]
 
 	from app import app as _application
 	return _application(env, s_r)
