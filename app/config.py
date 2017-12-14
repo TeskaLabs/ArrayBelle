@@ -6,6 +6,7 @@ class ConfigFactory():
 	defaults = {
 		'general': {
 			'website_url': '/',
+			'site_media_url':'/site'
 		},
 		'analytics': {
 			'enable': False,
@@ -16,9 +17,6 @@ class ConfigFactory():
 			'authors_directory': _basedir + '/authors',
 			'content_directory': _basedir + '/content'
 		},
-		'url': {
-			'site_media':'/site'
-		}
 	}
 
 	def add_defaults(self, dictionary, config):
