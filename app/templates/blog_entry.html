@@ -6,9 +6,11 @@
 {% block content %}
 {% autoescape false %}
 <div class="row">
-  <div class="col-sm-8 blog-entry-content">
-    {{body}}
-    {% include 'blog_entry_content_bottom.html' %}
+  <div class="col-sm-8">
+    <div class="blog-entry-content">
+      {{body}}
+      {% include 'blog_entry_content_bottom.html' %}
+    </div>
     {% if author_obj != {} %}
       {% include 'blog_entry_author_card.html' %}
     {% endif %}
