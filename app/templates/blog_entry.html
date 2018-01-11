@@ -6,7 +6,7 @@
 {% block content %}
 {% autoescape false %}
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-8 blog-entry-content">
     {{body}}
     {% include 'blog_entry_content_bottom.html' %}
     {% if author_obj != {} %}
