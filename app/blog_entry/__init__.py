@@ -60,7 +60,7 @@ def entry(entry):
 		blog_dict['image'] = url_for('blog_entry.file', entry=entry, path=image, _external=True)
 
 	# Blog Post Body
-	body = markdown.markdown(text, extensions=[SuperscriptExtension(), TableExtension(), CodeHiliteExtension(configs={}), AttrListExtension()])
+	body = markdown.markdown(text, extensions=[SuperscriptExtension(), TableExtension(), CodeHiliteExtension(), AttrListExtension()])
 	
 	# Blog Post Tags
 	tags = blog_dict.get('tags', [])
